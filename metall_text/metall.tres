@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bhrxm8gdftn6l"]
+
+[ext_resource type="Texture2D" uid="uid://brp45cbux2qi5" path="res://metall_text/ManholeCover002_4K_Color.jpg" id="1_46pxu"]
+[ext_resource type="Texture2D" uid="uid://d0owbajj8x16w" path="res://metall_text/ManholeCover002_4K_Metalness.jpg" id="2_ctkwh"]
+[ext_resource type="Texture2D" uid="uid://cu4ixkb3mut0t" path="res://metall_text/ManholeCover002_4K_NormalGL.jpg" id="3_0fb4c"]
+[ext_resource type="Texture2D" uid="uid://dp13gbyd5c6hh" path="res://metall_text/ManholeCover002_4K_Roughness.jpg" id="4_g40hb"]
+
+[resource]
+albedo_texture = ExtResource("1_46pxu")
+metallic = 1.0
+metallic_texture = ExtResource("2_ctkwh")
+roughness_texture = ExtResource("4_g40hb")
+normal_enabled = true
+normal_texture = ExtResource("3_0fb4c")
+uv1_scale = Vector3(9, 3.09, 3.015)
+uv1_offset = Vector3(0.05, 0, 0)

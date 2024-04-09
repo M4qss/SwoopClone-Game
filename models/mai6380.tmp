@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://dmfdyjlu7fjio"]
+
+[ext_resource type="Script" path="res://models/PlaneScript.gd" id="1_p5ra4"]
+[ext_resource type="ArrayMesh" uid="uid://c7rqw2fywdl0a" path="res://Jet_Lowpoly.obj" id="2_afgcw"]
+[ext_resource type="FontFile" uid="uid://ctc47xoqq7gr" path="res://PanopticMonospace-Bold.otf" id="3_cmp3n"]
+[ext_resource type="Texture2D" uid="uid://cklt8y24ax1vk" path="res://Sunset/Foreground.png" id="4_ivqw0"]
+[ext_resource type="Texture2D" uid="uid://dgia2bydof42u" path="res://Sunset/Background.png" id="4_mdbd4"]
+[ext_resource type="Script" path="res://models/Coin.gd" id="6_va37n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31sxf"]
+size = Vector3(1.25665, 0.165955, 1.36035)
+
+[sub_resource type="Theme" id="Theme_qiki7"]
+default_font = ExtResource("3_cmp3n")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_62wda"]
+default_font = ExtResource("3_cmp3n")
+default_font_size = 24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aklu0"]
+size = Vector3(2.01093, 1, 1.99176)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6hut"]
+albedo_texture = ExtResource("4_ivqw0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nxmcg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo84r"]
+albedo_texture = ExtResource("4_mdbd4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uf4o"]
+albedo_color = Color(0.854902, 0.854902, 0.12549, 1)
+metallic = 1.0
+metallic_specular = 0.69
+refraction_enabled = true
+refraction_scale = 0.95
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1btrc"]
+material = SubResource("StandardMaterial3D_2uf4o")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yv2ed"]
+size = Vector3(0.473049, 0.450108, 0.846436)
+
+[node name="MainScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0979063, 1.39483, 0.951324)
+fov = 75.3
+near = 0.16
+
+[node name="Plane" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.61525, 0.978717, -2.1438)
+collision_layer = 4
+collision_mask = 3
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+constant_force = Vector3(0, 8, 0)
+script = ExtResource("1_p5ra4")
+
+[node name="JetLowpoly" type="MeshInstance3D" parent="Plane"]
+transform = Transform3D(-4.5897e-09, 0, 0.1, 0, 0.105, 0, -0.105, 0, -4.37114e-09, 0.0524278, 0.300804, 0.234234)
+mesh = ExtResource("2_afgcw")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138474, 0.298365, 0.274829)
+shape = SubResource("BoxShape3D_31sxf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0.00067882, 0.000197747, -0.00033588, 0.209985, 0.977705, 0.000622162, -0.977704, 0.209985, -3.19012, 3.88175, 5.52715)
+shadow_enabled = true
+shadow_bias = 0.195
+shadow_normal_bias = 3.333
+shadow_transmittance_bias = 1.574
+shadow_opacity = 0.69
+shadow_blur = 1.667
+
+[node name="FuelLabel" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 350.0
+offset_bottom = 39.0
+theme = SubResource("Theme_qiki7")
+text = "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+[node name="ColorRect" type="ColorRect" parent="FuelLabel"]
+z_index = -1
+layout_mode = 0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 504.0
+offset_bottom = 42.0
+color = Color(0.388235, 0.443137, 0.462745, 1)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 519.0
+offset_top = 13.0
+offset_right = 915.0
+offset_bottom = 43.0
+theme = SubResource("Theme_62wda")
+text = "SCORE:00000"
+
+[node name="DownBorder" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65957, 0, -1.91583)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DownBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011236, -0.497983, -0.00169837)
+shape = SubResource("BoxShape3D_aklu0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DownBorder"]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 2.5763, 0, 0)
+material_override = SubResource("StandardMaterial3D_e6hut")
+mesh = SubResource("PlaneMesh_nxmcg")
+
+[node name="UpperBorder" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65957, 3.05879, -1.91583)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpperBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011236, 0.495167, -0.00169837)
+shape = SubResource("BoxShape3D_aklu0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UpperBorder"]
+transform = Transform3D(-6, 8.74228e-08, 0, -5.24537e-07, -1, 0, 0, 0, 1, 2.5763, 0, 0)
+material_override = SubResource("StandardMaterial3D_jo84r")
+mesh = SubResource("PlaneMesh_nxmcg")
+
+[node name="Coin" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64897, 2.58462, -2.03201)
+collision_mask = 4
+mass = 0.84
+gravity_scale = 0.0
+script = ExtResource("6_va37n")
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin"]
+transform = Transform3D(0.8, 0, 0, 0, 0.0238293, -0.799831, 0, 1.00446, 0.0189748, -0.034658, 0.0124686, 0.0435191)
+mesh = SubResource("CylinderMesh_1btrc")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0286031, 0.0176067, 0.0137939)
+shape = SubResource("BoxShape3D_yv2ed")

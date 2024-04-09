@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnmithqsd0uc5"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_ca1xr"]
+[ext_resource type="Texture2D" uid="uid://ch35k3gy4sro3" path="res://metall_text/1676701484_catherineasquithgallery-com-p-zelenii-kiberpank-fon-86.jpg" id="1_nvfql"]
+[ext_resource type="FontFile" uid="uid://ctc47xoqq7gr" path="res://PanopticMonospace-Bold.otf" id="1_tipgk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tpnb2"]
+blend_mode = 3
+
+[sub_resource type="Theme" id="Theme_1a162"]
+default_font = ExtResource("1_tipgk")
+default_font_size = 40
+
+[sub_resource type="GDScript" id="GDScript_02u2e"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="Theme" id="Theme_g7p17"]
+default_font = ExtResource("1_tipgk")
+default_font_size = 30
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ca1xr")
+metadata/maxScore = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0941176, 0.180392, 0.176471, 1)
+
+[node name="1676701484Catherineasquithgallery-com-p-zelenii-kiberpank-fon-86" type="Sprite2D" parent="."]
+modulate = Color(0.392157, 1, 0.231373, 1)
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_tpnb2")
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.54)
+texture = ExtResource("1_nvfql")
+
+[node name="ButtonPlay" type="Button" parent="."]
+modulate = Color(0.988235, 0.988235, 0.988235, 1)
+layout_mode = 0
+offset_left = 320.0
+offset_top = 128.0
+offset_right = 832.0
+offset_bottom = 256.0
+theme = SubResource("Theme_1a162")
+theme_override_colors/font_color = Color(0.686275, 0.921569, 0.835294, 1)
+theme_override_colors/font_pressed_color = Color(0.00392157, 0.219608, 0.176471, 1)
+text = "play"
+
+[node name="ButtonExit" type="Button" parent="."]
+modulate = Color(0.988235, 0.988235, 0.988235, 1)
+layout_mode = 0
+offset_left = 320.0
+offset_top = 320.0
+offset_right = 832.0
+offset_bottom = 448.0
+theme = SubResource("Theme_1a162")
+theme_override_colors/font_color = Color(0.686275, 0.921569, 0.835294, 1)
+theme_override_colors/font_pressed_color = Color(0.00392157, 0.219608, 0.176471, 1)
+text = "exit"
+script = SubResource("GDScript_02u2e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 768.0
+offset_bottom = 648.0
+theme = SubResource("Theme_g7p17")
+theme_override_colors/font_color = Color(0.686275, 0.921569, 0.835294, 1)
+text = "RECORD:"
+vertical_alignment = 1
+
+[connection signal="button_down" from="ButtonPlay" to="." method="_on_button_play_button_down"]
+[connection signal="button_down" from="ButtonExit" to="." method="_on_button_exit_button_down"]

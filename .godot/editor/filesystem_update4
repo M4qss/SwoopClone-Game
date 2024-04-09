@@ -1,0 +1,11 @@
+res://Menu.tscn
+res://sl_scr.gd
+res://models/main_scene.tscn
+res://metall_text/metall.tres
+res://models/DownBorder.gd
+res://ButtonPlay.gd
+res://barrier.gd
+res://models/UpperBorder.gd
+res://Menu.gd
+res://models/light.tscn
+res://light_.gd

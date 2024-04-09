@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx6t3mn74mmx7"]
+
+[ext_resource type="Script" path="res://barrier.gd" id="1_ew2f6"]
+[ext_resource type="Texture2D" uid="uid://ddoggggs1bt82" path="res://dark-background-with-gray-shapes.jpg" id="1_yt72y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt666"]
+albedo_texture = ExtResource("1_yt72y")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ru51o"]
+material = SubResource("StandardMaterial3D_nt666")
+size = Vector3(0.2, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tx2kx"]
+margin = 0.0
+size = Vector3(0.213501, 1.9845, 2.00073)
+
+[node name="Barrier" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68868, 0.704275, -2.00303)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_ew2f6")
+
+[node name="DownBlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, -0.133491, -1.98352, 0.00806069)
+mesh = SubResource("BoxMesh_ru51o")
+
+[node name="UpperBlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, -0.133491, 2.32212, 0.00806069)
+mesh = SubResource("BoxMesh_ru51o")
+
+[node name="DownCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.134418, -1.97682, 0.00982642)
+shape = SubResource("BoxShape3D_tx2kx")
+
+[node name="UpperCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185609, 2.316, 0.0106201)
+shape = SubResource("BoxShape3D_tx2kx")
